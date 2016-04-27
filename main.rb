@@ -13,6 +13,7 @@ MEDIAWIKI = MediaWiki::Butt.new('http://ftb.gamepedia.com')
 MEDIAWIKI.login(ENV['WIKIUSER'], ENV['WIKIPASS'])
 
 get '/wiki' do
+  content_type('image/svg+xml')
   article = params[:article]
   content = MEDIAWIKI.get_text(article)
   ret = ''
