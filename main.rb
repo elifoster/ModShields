@@ -9,7 +9,7 @@ Dotenv.load
 
 helpers ModShieldsHelper
 
-MEDIAWIKI = MediaWiki::Butt.new('http://ftb.gamepedia.com')
+MEDIAWIKI = MediaWiki::Butt.new('https://ftb.gamepedia.com/api.php', { query_limit_default: 'max' })
 MEDIAWIKI.login(ENV['WIKIUSER'], ENV['WIKIPASS'])
 
 get '/wiki' do
@@ -20,7 +20,7 @@ get '/wiki' do
   if content.nil?
     ret = Curl.get('https://img.shields.io/badge/wiki-0%-red.svg').body_str
   else
-    pagelinks = MEDIAWIKI.get_all_links_in_page(article, 5000)
+    pagelinks = MEDIAWIKI.get_all_links_in_page(article)
     all_links = pagelinks.size
     red_links = redlinks(pagelinks)
     unless MEDIAWIKI.get_text("Template:Navbox #{article}/content").nil?

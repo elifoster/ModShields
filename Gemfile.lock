@@ -3,9 +3,9 @@ GEM
   specs:
     curb (0.9.3)
     dotenv (2.1.1)
-    httpclient (2.7.1)
-    mediawiki-butt (0.11.0)
-      httpclient (>= 2.7.1)
+    httpclient (2.8.0)
+    mediawiki-butt (1.0.0)
+      httpclient (~> 2.8)
     mini_portile2 (2.0.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -25,10 +25,13 @@ PLATFORMS
 DEPENDENCIES
   curb (~> 0.9)
   dotenv (~> 2.1)
-  mediawiki-butt (~> 0.11)
+  mediawiki-butt (~> 1.0)
   nokogiri (~> 1.6)
   puma (~> 3.4)
   sinatra (~> 1.4)
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.11.2
+   1.12.5
