@@ -9,6 +9,7 @@ GEM
     mini_portile2 (2.0.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    open_uri_redirections (0.2.1)
     puma (3.4.0)
     rack (1.6.4)
     rack-protection (1.5.3)
@@ -27,6 +28,7 @@ DEPENDENCIES
   dotenv (~> 2.1)
   mediawiki-butt (~> 1.0)
   nokogiri (~> 1.6)
+  open_uri_redirections (~> 0.2)
   puma (~> 3.4)
   sinatra (~> 1.4)
 

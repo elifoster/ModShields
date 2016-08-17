@@ -3,6 +3,8 @@ require 'curb'
 require 'nokogiri'
 require 'mediawiki/butt'
 require 'dotenv'
+require 'open-uri'
+require 'open_uri_redirections'
 require_relative 'lib/modshields_helper'
 
 Dotenv.load
@@ -55,12 +57,13 @@ get '/totaldl' do
   id = params[:id]
   content_type('image/svg+xml')
   url = url(id)
-  response = Curl.get(url)
-  if response.status == '404 Not Found'
+  begin
+    response = File.read(open(url, allow_redirections: :safe))
+  rescue OpenURI::HTTPError
     halt(400, Curl.get('https://img.shields.io/badge/downloads-invalid-lightgrey.svg').body_str)
   end
 
-  html = Nokogiri::HTML(response.body_str, &:noblanks)
+  html = Nokogiri::HTML(response, &:noblanks)
   index = 0
   html.css('.info-label').each_with_index do |label, i|
     index = i if label.children.text == 'Total Downloads'
@@ -81,12 +84,13 @@ get '/latestversion' do
 
   content_type('image/svg+xml')
   url = url(id)
-  response = Curl.get(url)
-  if response.status == '404 Not Found'
+  begin
+    response = File.read(open(url, allow_redirections: :safe))
+  rescue OpenURI::HTTPError
     halt(400, Curl.get('https://img.shields.io/badge/mod version-invalid-lightgrey.svg').body_str)
   end
 
-  html = Nokogiri::HTML(response.body_str, &:noblanks)
+  html = Nokogiri::HTML(response, &:noblanks)
   index = 0
   unless mcversion.nil?
     html.css('.e-sidebar-subheader').each_with_index do |h4, i|
