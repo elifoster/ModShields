@@ -3,8 +3,8 @@ GEM
   specs:
     curb (0.9.3)
     dotenv (2.1.1)
-    httpclient (2.8.0)
-    mediawiki-butt (1.1.0)
+    httpclient (2.8.2.3)
+    mediawiki-butt (1.1.1)
       httpclient (~> 2.8)
     mini_portile2 (2.0.0)
     nokogiri (1.6.7.2)
