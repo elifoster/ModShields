@@ -67,7 +67,7 @@ get '/totaldl' do
   html = Nokogiri::HTML(response, &:noblanks)
   index = 0
   html.css('.info-label').each_with_index do |label, i|
-    index = i if label.children.text == 'Total Downloads'
+    index = i if label.children.text.strip == 'Total Downloads'
   end
   downloads = html.css('.info-data')[index].children.text
 
