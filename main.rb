@@ -95,7 +95,7 @@ get '/latestversion' do
   index = 0
   unless mcversion.nil?
     html.css('.e-sidebar-subheader').each_with_index do |h4, i|
-      index = i if mcversion =~ /#{h4.children.text.gsub('Minecraft ', '')}/
+      index = i if mcversion =~ /#{h4.children.text.strip.gsub('Minecraft ', '')}/
     end
   end
 
