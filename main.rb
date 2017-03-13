@@ -4,7 +4,6 @@ require 'nokogiri'
 require 'mediawiki/butt'
 require 'dotenv'
 require 'open-uri'
-require 'open_uri_redirections'
 require_relative 'lib/modshields_helper'
 
 Dotenv.load
@@ -62,7 +61,7 @@ get '/totaldl' do
   id = params[:id]
   url = url(id)
   begin
-    response = File.read(open(url, allow_redirections: :safe))
+    response = File.read(open(url))
   rescue OpenURI::HTTPError
     halt(400, Curl.get('https://img.shields.io/badge/downloads-invalid-lightgrey.svg').body_str)
   end
@@ -87,7 +86,7 @@ get '/latestversion' do
   mcversion = params[:mcversion]
   url = url(id)
   begin
-    response = File.read(open(url, allow_redirections: :safe))
+    response = File.read(open(url))
   rescue OpenURI::HTTPError
     halt(400, Curl.get('https://img.shields.io/badge/mod version-invalid-lightgrey.svg').body_str)
   end
