@@ -15,8 +15,12 @@ MEDIAWIKI = MediaWiki::Butt.new('https://ftb.gamepedia.com/api.php', query_limit
                                 assertion: :bot)
 MEDIAWIKI.login(ENV['WIKIUSER'], ENV['WIKIPASS'])
 
-get '/wiki' do
+before do
   content_type('image/svg+xml')
+  response.headers['Cache-Control'] = 'no-cache'
+end
+
+get '/wiki' do
   article = params[:article]
   content = MEDIAWIKI.get_text(article)
   ret = ''
@@ -56,7 +60,6 @@ end
 
 get '/totaldl' do
   id = params[:id]
-  content_type('image/svg+xml')
   url = url(id)
   begin
     response = File.read(open(url, allow_redirections: :safe))
@@ -82,8 +85,6 @@ end
 get '/latestversion' do
   id = params[:id]
   mcversion = params[:mcversion]
-
-  content_type('image/svg+xml')
   url = url(id)
   begin
     response = File.read(open(url, allow_redirections: :safe))
