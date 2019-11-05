@@ -10,8 +10,7 @@ Dotenv.load
 
 helpers ModShieldsHelper
 
-MEDIAWIKI = MediaWiki::Butt.new('https://ftb.gamepedia.com/api.php', query_limit_default: 'max', use_continuation: true,
-                                assertion: :bot)
+MEDIAWIKI = MediaWiki::Butt.new('https://ftb.gamepedia.com/api.php', assertion: :bot)
 MEDIAWIKI.login(ENV['WIKIUSER'], ENV['WIKIPASS'])
 
 before do
