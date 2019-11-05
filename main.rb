@@ -23,7 +23,7 @@ get '/wiki' do
   content = MEDIAWIKI.get_text(article)
   ret = ''
   if content.nil?
-    ret = Curl.get('https://img.shields.io/badge/wiki-0%-red.svg').body_str
+    ret = Curl.get('https://img.shields.io/badge/wiki-0%25-red.svg').body_str
   else
     pagelinks = MEDIAWIKI.get_all_links_in_page(article)
     all_links = pagelinks.size
@@ -50,7 +50,7 @@ get '/wiki' do
       elsif percent <= 100
         'green'
       end
-    ret = Curl.get("https://img.shields.io/badge/wiki-#{percent}%-#{color}.svg").body_str
+    ret = Curl.get("https://img.shields.io/badge/wiki-#{percent}%25-#{color}.svg").body_str
   end
 
   ret
