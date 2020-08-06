@@ -2,7 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     curb (0.9.10)
-    dotenv (2.7.5)
+    dotenv (2.7.6)
     httpclient (2.8.3)
     mediawiki-butt (3.0.0)
       httpclient (~> 2.8)
